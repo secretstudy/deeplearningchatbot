@@ -1,9 +1,19 @@
 from konlpy.tag import Komoran
+import pickle
+            
 
 class Preprocess:
-    def __init__(self, userdic=None): # 생성자
+    def __init__(self, word2index_dic='', userdic=None):
+        # 단어 인덱스사전 불러오기
+        if(word2index_dic != ''):
+            f = open(word2index_dic, "rb")
+            self.word_index = pickle.load(f)
+            f.close()
+        else:
+            self.word_index = None
+            
         # 형태소 분석기 초기화 
-        #gudxoth dlstmxjstmfmf todtjd 
+        #형태소 인스턴스를 생성
         #userdic 인자에는 사용자 정의 사전 파일의 경로를 입력할 수 있음
         self.komoran = Komoran(userdic=userdic)
         
@@ -17,10 +27,8 @@ class Preprocess:
             'EP', 'EF', 'EC', 'ETN', 'ETM',
             'XSN', 'XSV', 'XSA'
         ]
-        
-    # 형태소 분석기 pos 태거 
+    # 형태소 분석기 POS 태거    
     # 클래스 외부에서는 형태소 분석기 객체를 직접 호출할수 없게 한다.
-    
     def pos(self, sentemce):
         return self.komoran.pos(sentemce)
     
@@ -33,3 +41,16 @@ class Preprocess:
             if f(p[1]) is False:                
                 word_list.append(p if without_tag is False else p[0])
         return word_list
+    
+    #키워드를 단어 인덱스 시퀸스로 변환
+    def get_wordidx_sequence(self, keywords):
+        if self.word_index is None:
+            return []
+        w2i = []
+        for word in keywords:
+            try:
+                w2i.append(self.word_index[word])
+            except KeyError:
+                # 해당 단어가 사전에 없는 경우 OOV 처리
+                w2i.append(self.word_index['OOV'])
+        return w2i
