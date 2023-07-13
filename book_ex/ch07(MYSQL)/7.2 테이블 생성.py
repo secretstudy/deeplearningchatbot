@@ -5,9 +5,9 @@ try:
     # DB호스트 정보에 맞게 입력해주세요
     print("DB 연결 전")
     db = pymysql.connect(
-        host='localhost',
-        user='root',
-        passwd='root',
+        host='192.168.35.185',
+        user='chatbot',
+        passwd='chatbotstudy',
         db='chatbot',
         charset='utf8',
     )
