@@ -1,6 +1,6 @@
-DB_HOST = 'localhost',
-DB_USER = 'root',
-DB_PASSWORD = 'root',
+DB_HOST = '192.168.35.185',
+DB_USER = 'chatbot',
+DB_PASSWORD = 'chatbotstudy',
 DB_NAME = 'chatbot',
 
 def DatabaseConfig():
