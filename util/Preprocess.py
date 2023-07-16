@@ -13,12 +13,13 @@ class Preprocess:
             self.word_index = None
 
         # 형태소 분석기 초기화
-        # 형태소 인스턴스를 생성
+        #Preprocess 클래스가 생성될때  형태소 인스턴스를 생성
         # userdic 인자에는 사용자 정의 사전 파일의 경로를 입력할 수 있음
         self.komoran = Komoran(userdic=userdic)
 
         # 제외할 품사
         # 어떤 품사를 불용어로 정의할지 클래스 맴버 변수에 정의
+        # 해당 리스트에 정의된 품사들은 불용어로 정의 되어 핵심 키워드에서 제외된다.
         # 관계언 제거, 기호 제거, 어미 제거, 접미사 제거
         self.exclusion_tags = [
             'JKS', 'JKC', 'JKG', 'JKO', 'JKB', 'JKV', 'JKQ',
@@ -28,13 +29,14 @@ class Preprocess:
             'XSN', 'XSV', 'XSA'
         ]
 
-    # 형태소 분석기 POS 태거
-    # 클래스 외부에서는 형태소 분석기 객체를 직접 호출할수 없게 한다.
+    # 코모란 형태소 분석기의 POS 태거를 호출하는 메서드
+    # Preprocess 클래스 외부에서는 코모란 형태소를
+    # 직접적으로 호출할 일 없게 하기 위해 정의한 래퍼 함수
     def pos(self, sentence):
         return self.komoran.pos(sentence)
 
     # 불용어 제거후 필요한 품사 정보만 가져오기
-    # self.exclusion_tags에 해당하지 않는 품사 정보만 키워드로 저장
+    # 생성자에서 정의한 self.exclusion_tags에 해당하지 않는 품사 정보만 키워드로 저장
     def get_keywords(self, pos, without_tag=False):
         f = lambda x: x in self.exclusion_tags
         word_list = []
