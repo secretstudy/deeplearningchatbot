@@ -1,8 +1,8 @@
 from util.Preprocess import Preprocess
 
-sent = "내일 오전 10시에 짬뽕 주문하고 싶어ㅋㅋ"
+#sent = "내일 오전 10시에 짬뽕 주문하고 싶어ㅋㅋ"
 #sent = "원격지원  어떻게 해요?"
-#sent = "설치를 하고 싶은데 원격가능 할까요?"
+sent = "설치를 하고 싶은데 원격가능 할까요?"
 
 # 전처리 객체 생성
 p = Preprocess(userdic="../util/user_dic.tsv")
