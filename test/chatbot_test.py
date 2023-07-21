@@ -11,10 +11,12 @@ db = Database(
     host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db_name=DB_NAME
 )
 db.connect()    # DB 연결
+print("DB 연결 성공")
 
 # 질문
 query = "오전에 탕수육 10개 주문합니다"
 # query = "안녕하세요"
+# query = "원격"
 
 # 의도 파악
 from model.intent.IntentModel import IntentModel
