@@ -18,5 +18,7 @@ def get_answer_from_engine(bottype, query):
 
     # 챗봇 엔진 질의 요청
     json_data = {
-
+        'Query' : query,
+        'BotType' : bottype
     }
+    message = json.dumps(json_data)
