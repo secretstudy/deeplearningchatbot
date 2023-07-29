@@ -22,3 +22,17 @@ def get_answer_from_engine(bottype, query):
         'BotType' : bottype
     }
     message = json.dumps(json_data)
+    mySocket.send(message.encode())
+
+    # 챗봇 엔진 답변 출력
+    data = mySocket.recv(2048).decode()
+    ret_data = json.loads(data)
+
+    #챗봇 엔진 서버 연결 소켓 닫기
+    mySocket.close()
+
+    return ret_data
+
+# 챗봇엔진 query 전송 API
+@app.route('/query/<bot_type>', methods=['POST'])
+def
