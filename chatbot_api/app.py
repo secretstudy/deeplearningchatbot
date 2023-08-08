@@ -35,4 +35,26 @@ def get_answer_from_engine(bottype, query):
 
 # 챗봇엔진 query 전송 API
 @app.route('/query/<bot_type>', methods=['POST'])
-def
+def query(bot_type):
+    body = request.get_json()
+
+    try:
+        if bot_type == 'TEST':
+            # 챗봇 API 테스트
+            ret = get_answer_from_engine(bottype=bot_type,query=body['query'])
+            return jsonify(ret)
+        elif bot_type == "KAKAO":
+            # 카카오톡 처리
+            pass
+        elif bot_type == "NAVER":
+            # 네이버처리 처리
+            pass
+        else:
+            # 정의 되지 않은 bot typ인 경우 404 오류
+            abort(404)
+    except Exception as ex:
+        # 오류 발생 시 500 오류
+        abort(500)
+if __name__ == '__main__':
+    app.run()
+
