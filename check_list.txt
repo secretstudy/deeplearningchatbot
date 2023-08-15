@@ -12,7 +12,7 @@ flask = 2.2.5
 
 editer = pycharm
 
-api = rest_api
+api = rest_api,kakaotalk
 
 분류 = 음식 -> 조이그린
 
