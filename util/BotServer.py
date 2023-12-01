@@ -9,8 +9,8 @@ class BotServer:
     #sock 생성
     def create_sock(self):#소캣을 생성하는 메서드
         self.mySock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.mySock = socket.bind(("0.0.0.0", int(self.port)))#포트 지정
-        self.mySock = socket.listen(int(self.listen))#지정한 연결 수 만큼 클라 연결을 수락
+        self.mySock.bind(("0.0.0.0", int(self.port)))  # 포트 지정
+        self.mySock.listen(int(self.listen))#지정한 연결 수 만큼 클라 연결을 수락
         return self.mySock
     
     # client 대기
