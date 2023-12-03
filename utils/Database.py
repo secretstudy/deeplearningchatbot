@@ -2,6 +2,7 @@ import pymysql
 import pymysql.cursors
 import logging
 
+#데이터베이스 제어 모듈 생성
 
 class Database:
     '''
